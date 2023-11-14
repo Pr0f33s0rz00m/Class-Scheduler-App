@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">newapp</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="class_scheduler_pro">CLASS SCHEDULER PRO</string>
+    <string name="todo">TODO</string>
+    <string name="csp">CSP</string>
+    <string name="title_activity_landing_screen">LandingScreen</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string-array name="event_array">
+        <item>Homework</item>
+        <item>Test</item>
+        <item>Quiz</item>
+        <item>Project</item>
+        <item>Lab</item>
+    </string-array>
+    <string name="blank_password">""</string>string>
+    <string name="blank_email">""</string>string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_login_screen">LoginScreenActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+</resources>
