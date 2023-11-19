@@ -1,149 +1,219 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nestedScrollView2"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".DetailFragment">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.example.newapp.ItemViewModel" />
+
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
-        android:layout_width="407dp"
-        android:layout_height="100dp"
-        android:background="#283593"
-        android:padding="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:id="@+id/fourth_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".DetailFragment">
 
-        <ImageButton
-            android:id="@+id/imageButton_home"
-            android:layout_width="58dp"
-            android:layout_height="46dp"
-            android:layout_marginStart="4dp"
-            android:background="#283593"
-            android:src="@drawable/icon5"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView8"
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="409dp"
+            android:layout_height="71dp"
+            android:background="#1565C0"
+            android:padding="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.65" />
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="208dp"
-            android:layout_height="39dp"
-            android:layout_marginStart="73dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="13dp"
-            android:text="Class Name"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageButton_home"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#D7D7D8"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
-        app:layout_constraintVertical_bias="0.0">
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout"
-            android:layout_width="310dp"
-            android:layout_height="243dp"
-            android:layout_marginStart="46dp"
-            android:layout_marginTop="210dp"
-            android:layout_marginEnd="46dp"
-            android:layout_marginBottom="293dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintVertical_bias="0.0">
 
             <TextView
-                android:id="@+id/text_view_detail"
-                android:layout_width="match_parent"
-                android:layout_height="240dp"
-                android:background="#FFFFFF"
-                android:hint="Insert class details" />
+                android:id="@+id/textView10"
+                android:layout_width="199dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginEnd="100dp"
+                android:text="Class Details"
+                android:textColor="#040404"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="207dp"
-            android:layout_height="47dp"
-            android:layout_marginTop="22dp"
-            android:fontFamily="@font/belgrano"
-            android:lineSpacingExtra="10sp"
-            android:text="Class Detail Screen"
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            android:textStyle="bold|italic"
-            app:layout_constraintBottom_toTopOf="@+id/textView6"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.56"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.62" />
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="156dp"
-            android:layout_height="41dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
-            android:text="Class start date"
-            android:textAlignment="center"
-            android:textAllCaps="true"
-            android:textColor="#283593"
-            android:textSize="16sp"
-            android:textStyle="bold|italic"
-            app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.55"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-        <ImageButton
-            android:id="@+id/imageButton_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="185dp"
-            android:layout_marginTop="45dp"
-            android:layout_marginEnd="185dp"
-            android:layout_marginBottom="147dp"
-            android:src="@drawable/icon7"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#21BDAB"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
-        <Button
-            android:id="@+id/button_cancel_detail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="167dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="153dp"
-            android:layout_marginBottom="67dp"
-            android:text="@android:string/cancel"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton_edit" />
+            <DatePicker
+                android:id="@+id/datePicker2"
+                android:layout_width="277dp"
+                android:layout_height="93dp"
+                android:layout_marginStart="75dp"
+                android:layout_marginTop="22dp"
+                android:background="#283593"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toTopOf="@+id/button_back_to_list"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputClassDetails"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <Button
+                android:id="@+id/button_back_to_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="35dp"
+                android:text="Back to List"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.096"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/datePicker2"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <Button
+                android:id="@+id/buttonCancel"
+                android:layout_width="118dp"
+                android:layout_height="47dp"
+                android:layout_marginStart="112dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="28dp"
+                android:layout_marginBottom="35dp"
+                android:text="Cancel"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/button_back_to_list"
+                app:layout_constraintTop_toBottomOf="@+id/datePicker2"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <EditText
+                android:id="@+id/textInputClassName"
+                android:layout_width="223dp"
+                android:layout_height="53dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="25dp"
+                android:hint="Insert event name"
+                android:text="@{viewmodel.currentItem.className}"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toTopOf="@+id/textInputClassDetails"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="409dp"
+                android:layout_height="260dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="10dp"
+                android:background="#00838F"
+                app:layout_constraintBottom_toTopOf="@+id/textInputClassName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0">
+
+                <TextView
+                    android:id="@+id/textViewStaticDate"
+                    android:layout_width="289dp"
+                    android:layout_height="39dp"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginEnd="60dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="@{viewmodel.currentItem.date}"
+                    app:layout_constraintBottom_toTopOf="@+id/buttonEdit"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewStaticDetails" />
+
+                <TextView
+                    android:id="@+id/textViewStaticName"
+                    android:layout_width="288dp"
+                    android:layout_height="42dp"
+                    android:layout_marginStart="61dp"
+                    android:layout_marginTop="45dp"
+                    android:layout_marginEnd="60dp"
+                    android:text="Name"
+                    app:layout_constraintBottom_toTopOf="@+id/textViewStaticDetails"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <Button
+                    android:id="@+id/buttonEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="Edit"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/buttonSave" />
+
+                <Button
+                    android:id="@+id/buttonSave"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="Save"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/buttonEdit"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewStaticDetails"
+                    android:layout_width="289dp"
+                    android:layout_height="39dp"
+                    android:layout_marginStart="61dp"
+                    android:layout_marginTop="19dp"
+                    android:layout_marginEnd="59dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="Details"
+                    app:layout_constraintBottom_toTopOf="@+id/textViewStaticDate"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewStaticName" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <EditText
+                android:id="@+id/textInputClassDetails"
+                android:layout_width="223dp"
+                android:layout_height="53dp"
+                android:layout_marginTop="26dp"
+                android:layout_marginBottom="35dp"
+                android:hint="Insert event details"
+                android:text="@{viewmodel.currentItem.className}"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toTopOf="@+id/datePicker2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputClassName" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

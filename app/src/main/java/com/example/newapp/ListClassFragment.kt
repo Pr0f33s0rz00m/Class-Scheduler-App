@@ -9,7 +9,9 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.NavArgs
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.newapp.databinding.FragmentListBinding
 
 private fun <T> ArrayAdapter<T>.addAll(stringList: Any) {
@@ -42,12 +44,19 @@ class ListClassFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+
         val currentList = viewModel.getList()
 
-        var str = arrayOf<String>()
+        val classListIterator = currentList.listIterator()
+        val classList = mutableListOf<String>()
+        while(classListIterator.hasNext()){
+            classList.add(classListIterator.next().className)
+        }
+
+        // var str = arrayOf<String>()
 
 
-        var adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, currentList)
+        var adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, classList)
         binding.listView.adapter = adapter
 
 
@@ -55,7 +64,7 @@ class ListClassFragment : Fragment() {
             // val selectedclass = parent.getItemAtPosition(position) as String
             // val itematindex = viewModel.getItemAtIndex(position)
 
-            val action = ListClassFragmentDirections.actionListFragmentToDetailFragment(position+1)
+            val action = ListClassFragmentDirections.actionListFragmentToDetailFragment(position)
             findNavController().navigate(action)
             }
 

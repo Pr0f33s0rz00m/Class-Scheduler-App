@@ -1,7 +1,9 @@
 package com.example.newapp
 
+import android.icu.text.SimpleDateFormat
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +19,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.newapp.databinding.FragmentAddBinding
+import java.util.Date
+import java.util.Locale
+import androidx.lifecycle.*
 
 
 /**
@@ -26,7 +31,7 @@ class AddFragment : Fragment() {
 
     private var _binding: FragmentAddBinding? = null
     private val viewModel: ItemViewModel by activityViewModels()
-    private var indexadd: Int = 1
+    private var indexadd: Int = 0
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -38,6 +43,7 @@ class AddFragment : Fragment() {
     ): View? {
 
         _binding = FragmentAddBinding.inflate(inflater, container, false)
+
        val view = binding.root
        return view
     }
@@ -45,14 +51,14 @@ class AddFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         var date : String = ""
+        date = SimpleDateFormat("yyyy-MM-dd").format(Date()).toString()
         binding.datePicker1.setOnDateChangedListener(){ view: DatePicker, year, month, dayOfMonth ->
             val month = month + 1
-            date = "$year-$month-$dayOfMonth"
-            val s_year = year
-            val s_month = month
-            val s_day = dayOfMonth
-
+            val s_year = year-1
+            date = "$s_year-$month-$dayOfMonth"
+            Log.d("DatePicker", "Date selected: $date")
 
         }
         binding.buttonCancel.setOnClickListener {
@@ -60,7 +66,7 @@ class AddFragment : Fragment() {
         }
         binding.imageButtonSave.setOnClickListener {
             val details = binding.edittextclassdetails.text.toString()
-            val name = binding.textInputEditTextNewClass.text.toString()
+            val name = binding.textInputClassName.text.toString()
             viewModel.addItem(name, details, date.toString(), indexadd)
             ++indexadd
             findNavController().navigate(R.id.action_addFragment_to_listFragment)

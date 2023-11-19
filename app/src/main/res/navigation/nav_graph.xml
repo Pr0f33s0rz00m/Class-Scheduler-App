@@ -14,9 +14,6 @@
             android:id="@+id/action_listFragment_to_addFragment"
             app:destination="@id/addFragment" />
         <action
-            android:id="@+id/action_listFragment_to_editFragment"
-            app:destination="@id/editFragment" />
-        <action
             android:id="@+id/action_listFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
         <action
@@ -26,9 +23,7 @@
             android:id="@+id/listFragmentDirections"
             app:destination="@id/detailFragment"
             app:popUpTo="@id/detailFragment" />
-        <argument
-            android:name="itematindex"
-            app:argType="integer" />
+
     </fragment>
     <fragment
         android:id="@+id/addFragment"
@@ -40,31 +35,16 @@
             app:destination="@id/listFragment" />
     </fragment>
     <fragment
-        android:id="@+id/editFragment"
-        android:name="com.example.newapp.EditFragment"
-        android:label="fragment_edit"
-        tools:layout="@layout/fragment_edit" >
-        <action
-            android:id="@+id/action_editFragment_to_listFragment"
-            app:destination="@id/listFragment" />
-        <argument
-            android:name="index"
-            app:argType="integer" />
-    </fragment>
-    <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.newapp.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" >
-        <action
-            android:id="@+id/action_detailFragment_to_listFragment"
-            app:destination="@id/listFragment" />
-        <action
-            android:id="@+id/action_detailFragment_to_editFragment"
-            app:destination="@id/editFragment" />
         <argument
             android:name="ind"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_detailFragment_to_listFragment"
+            app:destination="@id/listFragment" />
 
     </fragment>
 </navigation>
