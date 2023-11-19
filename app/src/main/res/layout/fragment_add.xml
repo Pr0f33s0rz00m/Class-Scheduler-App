@@ -109,7 +109,7 @@
         <DatePicker
             android:id="@+id/datePicker1"
             android:layout_width="263dp"
-            android:layout_height="67dp"
+            android:layout_height="98dp"
             android:layout_marginStart="75dp"
             android:layout_marginTop="64dp"
             android:layout_marginEnd="75dp"
