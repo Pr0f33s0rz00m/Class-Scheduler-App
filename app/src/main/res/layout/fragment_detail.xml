@@ -66,13 +66,13 @@
                 android:layout_height="93dp"
                 android:layout_marginStart="75dp"
                 android:layout_marginTop="22dp"
+                android:layout_marginEnd="75dp"
                 android:background="#283593"
                 android:calendarViewShown="false"
                 android:datePickerMode="spinner"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@+id/button_back_to_list"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textInputClassDetails"
                 app:layout_constraintVertical_bias="0.0" />
@@ -81,31 +81,14 @@
                 android:id="@+id/button_back_to_list"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="35dp"
+                android:layout_marginTop="20dp"
                 android:text="Back to List"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.096"
+                app:layout_constraintHorizontal_bias="0.124"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/datePicker2"
                 app:layout_constraintVertical_bias="1.0" />
-
-            <Button
-                android:id="@+id/buttonCancel"
-                android:layout_width="126dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="112dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="28dp"
-                android:layout_marginBottom="35dp"
-                android:text="Cancel"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/button_back_to_list"
-                app:layout_constraintTop_toBottomOf="@+id/datePicker2"
-                app:layout_constraintVertical_bias="0.0" />
 
             <EditText
                 android:id="@+id/textInputClassName"
@@ -125,7 +108,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout"
                 android:layout_width="0dp"
-                android:layout_height="260dp"
+                android:layout_height="0dp"
                 android:layout_marginBottom="10dp"
                 android:background="#00838F"
                 app:layout_constraintBottom_toTopOf="@+id/textInputClassName"
@@ -161,16 +144,19 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintVertical_bias="1.0" />
 
                 <Button
                     android:id="@+id/buttonEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="32dp"
+                    android:layout_marginStart="89dp"
+                    android:layout_marginEnd="81dp"
+                    android:layout_marginBottom="28dp"
                     android:text="Edit"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/buttonSave"
                     app:layout_constraintTop_toBottomOf="@+id/textViewStaticDate" />
 
@@ -178,12 +164,14 @@
                     android:id="@+id/buttonSave"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="65dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="89dp"
                     android:text="Save"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/buttonEdit"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewStaticDate"
-                    app:layout_constraintVertical_bias="0.625" />
+                    app:layout_constraintTop_toBottomOf="@+id/textViewStaticDate" />
 
                 <TextView
                     android:id="@+id/textViewStaticDetails"
@@ -216,6 +204,21 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textInputClassName" />
+
+            <Button
+                android:id="@+id/button_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="138dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="33dp"
+                android:text="@android:string/cancel"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/button_back_to_list"
+                app:layout_constraintTop_toBottomOf="@+id/datePicker2"
+                app:layout_constraintVertical_bias="0.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

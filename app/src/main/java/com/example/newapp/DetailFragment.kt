@@ -39,11 +39,11 @@ class DetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        _binding = FragmentDetailBinding.inflate(inflater, container, false)
         binding.viewmodel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
-        _binding = FragmentDetailBinding.inflate(inflater, container, false)
-
-
+        val view = binding.root
         return view
     }
 
@@ -52,7 +52,8 @@ class DetailFragment : Fragment() {
 
 
         viewModel.className.observe(viewLifecycleOwner, Observer { className ->
-            // Update UI with new className
+
+        // Update UI with new className
         })
 
         viewModel.details.observe(viewLifecycleOwner, Observer { details ->
@@ -66,13 +67,12 @@ class DetailFragment : Fragment() {
         viewModel.ind.observe(viewLifecycleOwner, Observer { ind ->
             // Update UI with new ind
         })
-        viewModel.itemsLiveData.observe(viewLifecycleOwner, Observer { itemsLiveData -> })
-        // ... other logic ...
+
 
         // Observer for the selected item index
 
 
-        var itematindex = viewModel.getItemAtIndex(args.ind)
+        val itematindex = viewModel.getItemAtIndex(args.ind)
         if (itematindex != null) {
             viewModel.setCurrentItem(itematindex)
         }
@@ -157,7 +157,10 @@ class DetailFragment : Fragment() {
                     val snackbar = Snackbar.make(it, "Do you want to save these changes?", Snackbar.LENGTH_LONG)
                     snackbar.setAction("Yes") {
                         // Handle the "Yes" action, e.g., save the data
-                        viewModel.updateItem(binding.textInputClassName.toString(),binding.textInputClassDetails.toString(),formattedDate,args.ind)
+                        viewModel.updateItem(binding.textInputClassName.text.toString(),binding.textInputClassDetails.text.toString(),formattedDate,args.ind)
+                        binding.textInputClassDetails.visibility = View.INVISIBLE
+                        binding.textInputClassName.visibility = View.INVISIBLE
+                        binding.datePicker2.visibility = View.INVISIBLE
                     }
                     snackbar.show()
                 }

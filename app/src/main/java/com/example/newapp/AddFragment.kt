@@ -56,7 +56,7 @@ class AddFragment : Fragment() {
         date = SimpleDateFormat("yyyy-MM-dd").format(Date()).toString()
         binding.datePicker1.setOnDateChangedListener(){ view: DatePicker, year, month, dayOfMonth ->
             val month = month + 1
-            val s_year = year-1
+            val s_year = year
             date = "$s_year-$month-$dayOfMonth"
             Log.d("DatePicker", "Date selected: $date")
 
