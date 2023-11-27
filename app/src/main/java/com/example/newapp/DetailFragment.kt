@@ -20,6 +20,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.newapp.ui.login.database.Item
 import com.google.android.material.snackbar.Snackbar
 import java.util.Date
 
@@ -28,7 +29,7 @@ class DetailFragment : Fragment() {
     private var formattedDate: String = ""
     private var _binding: FragmentDetailBinding? = null
     private val viewModel: ItemViewModel by activityViewModels()
-    private val args: DetailFragmentArgs by navArgs()
+
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -51,38 +52,26 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
 
-        viewModel.className.observe(viewLifecycleOwner, Observer { className ->
+        viewModel.Item.observe(viewLifecycleOwner, Observer { className ->
 
         // Update UI with new className
-        })
-
-        viewModel.details.observe(viewLifecycleOwner, Observer { details ->
-            // Update UI with new details
-        })
-
-        viewModel.date.observe(viewLifecycleOwner, Observer { date ->
-            // Update UI with new date
-        })
-
-        viewModel.ind.observe(viewLifecycleOwner, Observer { ind ->
-            // Update UI with new ind
         })
 
 
         // Observer for the selected item index
 
 
-        val itematindex = viewModel.getItemAtIndex(args.ind)
-        if (itematindex != null) {
-            viewModel.setCurrentItem(itematindex)
-        }
+
         //if (itematindex != null) {
         //    binding.classdetails.setText(itematindex.details)
         //    binding.textInputEditTextNewClass.setText(itematindex.className)
         // }
 
-        itematindex?.let {
+        val currentclass = viewModel.Item.value!!
+        currentclass.let {
+
             formattedDate = it.date
+
             val format = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
             val date: Date? = try {
                 format.parse(it.date)
@@ -156,8 +145,10 @@ class DetailFragment : Fragment() {
                 binding.buttonSave.setOnClickListener {
                     val snackbar = Snackbar.make(it, "Do you want to save these changes?", Snackbar.LENGTH_LONG)
                     snackbar.setAction("Yes") {
+
                         // Handle the "Yes" action, e.g., save the data
-                        viewModel.updateItem(binding.textInputClassName.text.toString(),binding.textInputClassDetails.text.toString(),formattedDate,args.ind)
+                        val item: Item = Item(id = currentclass.id,  className =  binding.textInputClassName.text.toString(), classDetails = binding.textInputClassDetails.text.toString(),date = formattedDate)
+                        viewModel.updateClass(item)
                         binding.textInputClassDetails.visibility = View.INVISIBLE
                         binding.textInputClassName.visibility = View.INVISIBLE
                         binding.datePicker2.visibility = View.INVISIBLE

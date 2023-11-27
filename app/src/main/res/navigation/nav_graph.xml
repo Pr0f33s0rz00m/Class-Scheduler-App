@@ -17,9 +17,6 @@
             android:id="@+id/action_listFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
         <action
-            android:id="@+id/action_listFragment_self"
-            app:destination="@id/listFragment" />
-        <action
             android:id="@+id/listFragmentDirections"
             app:destination="@id/detailFragment"
             app:popUpTo="@id/detailFragment" />
@@ -39,9 +36,6 @@
         android:name="com.example.newapp.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" >
-        <argument
-            android:name="ind"
-            app:argType="integer" />
         <action
             android:id="@+id/action_detailFragment_to_listFragment"
             app:destination="@id/listFragment" />

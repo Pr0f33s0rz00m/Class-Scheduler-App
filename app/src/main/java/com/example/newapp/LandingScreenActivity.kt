@@ -2,11 +2,10 @@ package com.example.newapp
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.ListFragment
-import androidx.lifecycle.ReportFragment.Companion.reportFragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.newapp.databinding.ActivityLandingScreenBinding
+import com.example.newapp.ui.login.database.ItemDatabase
 
 
 class LandingScreenActivity : AppCompatActivity() {
@@ -16,12 +15,17 @@ class LandingScreenActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val don = ItemDatabase.getInstance(application).itemDAO
+        val itemViewModelFactory = ItemViewModelFactory(don)
+        val itemViewModel = ViewModelProvider(this,itemViewModelFactory).get(ItemViewModel::class.java)
 
         binding = ActivityLandingScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        findNavController(R.id.nav_host_fragment).navigate(R.id.action_listFragment_self)
-        viewModel = ViewModelProvider(this).get(ItemViewModel::class.java)
+        val navController = findNavController(R.id.nav_host_fragment)
 
+
+
+        navController.navigate(R.id.listFragment)
         // val navController = findNavController(R.id.navgraph)
         // var first = ListFragment()
         // supportFragmentManager.beginTransaction()

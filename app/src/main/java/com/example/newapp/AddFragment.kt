@@ -22,6 +22,7 @@ import com.example.newapp.databinding.FragmentAddBinding
 import java.util.Date
 import java.util.Locale
 import androidx.lifecycle.*
+import com.example.newapp.ui.login.database.Item
 
 
 /**
@@ -52,8 +53,9 @@ class AddFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var date : String = ""
-        date = SimpleDateFormat("yyyy-MM-dd").format(Date()).toString()
+        val navController = findNavController()
+
+        var date = SimpleDateFormat("yyyy-MM-dd").format(Date()).toString()
         binding.datePicker1.setOnDateChangedListener(){ view: DatePicker, year, month, dayOfMonth ->
             val month = month + 1
             val s_year = year
@@ -67,13 +69,15 @@ class AddFragment : Fragment() {
         binding.imageButtonSave.setOnClickListener {
             val details = binding.edittextclassdetails.text.toString()
             val name = binding.textInputClassName.text.toString()
-            viewModel.addItem(name, details, date.toString(), indexadd)
-            ++indexadd
-            findNavController().navigate(R.id.action_addFragment_to_listFragment)
+
+            val item = Item(className = name, classDetails = details, date = date)
+            viewModel.addClass(item)
+            viewModel.setClassList()
+            navController.navigate(R.id.action_addFragment_to_listFragment)
         }
 
         binding.imageButtonHome.setOnClickListener {
-            findNavController().navigate(R.id.action_addFragment_to_listFragment)
+            navController.navigate(R.id.action_addFragment_to_listFragment)
         }
 
     }
