@@ -40,8 +40,9 @@ class DetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        // Binding layout and inflating
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
+        // Binding the viewModel and the Life cycle owner
         binding.viewmodel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         val view = binding.root
@@ -52,9 +53,9 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
 
-        viewModel.Item.observe(viewLifecycleOwner, Observer { className ->
+        viewModel.item.observe(viewLifecycleOwner, Observer {
 
-        // Update UI with new className
+            // Update UI with new info
         })
 
 
@@ -67,10 +68,12 @@ class DetailFragment : Fragment() {
         //    binding.textInputEditTextNewClass.setText(itematindex.className)
         // }
 
-        val currentclass = viewModel.Item.value!!
-        currentclass.let {
-
-            formattedDate = it.date
+        val currentclass = viewModel.item.value
+        currentclass?.let {
+            // if there is a class selected then its date is pulled from the particular class
+            if (it != null) {
+                formattedDate = it.date
+            }
 
             val format = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
             val date: Date? = try {
@@ -81,33 +84,26 @@ class DetailFragment : Fragment() {
 
 
             date?.let {
-              val calendar = Calendar.getInstance()
-                    calendar.time = it
-                    val year = calendar.get(Calendar.YEAR)
-                    val month = calendar.get(Calendar.MONTH)
-                    val day = calendar.get(Calendar.DAY_OF_MONTH)
-                    binding.datePicker2.updateDate(year, month, day)
+                val calendar = Calendar.getInstance()
+                calendar.time = it
+                val year = calendar.get(Calendar.YEAR)
+                val month = calendar.get(Calendar.MONTH)
+                val day = calendar.get(Calendar.DAY_OF_MONTH)
+                binding.datePicker2.updateDate(year, month, day)
 
-                }
-             }
+            }
+        }
 
-            // var languages =
-            //    arrayOf("Homework","Test","Quiz","Project","Lab","Discussion","Speech","Paper")
-
-            // var adapter: ArrayAdapter<CharSequence> = ArrayAdapter(requireContext(),android.R.layout.simple_spinner_item,languages)
-
-            // adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
-
-            // Use 'formattedDate' when saving
+           // Sets the back button to navigate back to the list
             binding.buttonBackToList.setOnClickListener {
                 findNavController().navigate(R.id.action_detailFragment_to_listFragment)
             }
             // changing the textview
             // data to selected date
 
-
+            // Binds the button edit
             binding.buttonEdit.setOnClickListener {
+                // Once the button is clicked, the edit windows become visible
                 binding.textInputClassDetails.visibility = View.VISIBLE
                 binding.textInputClassName.visibility = View.VISIBLE
                 binding.datePicker2.visibility = View.VISIBLE
@@ -116,6 +112,7 @@ class DetailFragment : Fragment() {
                     binding.textInputClassName.visibility = View.INVISIBLE
                     binding.datePicker2.visibility = View.INVISIBLE
                 }
+                // Binds edit text windows
                 binding.textInputClassDetails.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, event ->
                     if (actionId == EditorInfo.IME_ACTION_DONE) {
                         val text = v.text.toString()
@@ -132,7 +129,7 @@ class DetailFragment : Fragment() {
                     }
                     false
                 })
-
+                // Binds date picker and saves the changed date
                 binding.datePicker2.setOnDateChangedListener() { view: DatePicker, year, month, dayOfMonth ->
                     val month = month + 1
                     formattedDate = "$year-$month-$dayOfMonth"
@@ -142,13 +139,17 @@ class DetailFragment : Fragment() {
                     Log.d("DatePicker", "Date selected: $formattedDate")
 
                 }
+                // Once the class is saved, it sends the updates to the database and moves to the list fragment
                 binding.buttonSave.setOnClickListener {
                     val snackbar = Snackbar.make(it, "Do you want to save these changes?", Snackbar.LENGTH_LONG)
                     snackbar.setAction("Yes") {
 
                         // Handle the "Yes" action, e.g., save the data
-                        val item: Item = Item(id = currentclass.id,  className =  binding.textInputClassName.text.toString(), classDetails = binding.textInputClassDetails.text.toString(),date = formattedDate)
-                        viewModel.updateClass(item)
+                        val item: Item? = currentclass?.let { it1 -> Item(id = it1.id,  className =  binding.textInputClassName.text.toString(), classDetails = binding.textInputClassDetails.text.toString(),date = formattedDate) }
+                        if (item != null) {
+                            viewModel.updateClass(item)
+
+                        }
                         binding.textInputClassDetails.visibility = View.INVISIBLE
                         binding.textInputClassName.visibility = View.INVISIBLE
                         binding.datePicker2.visibility = View.INVISIBLE

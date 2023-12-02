@@ -1,0 +1,16 @@
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tvClassName"
+    android:layout_width="match_parent"
+    android:layout_height="75dp"
+    android:clickable="true"
+    android:theme="@style/Theme.Material3.DynamicColors.DayNight"
+    android:focusable="auto"
+    android:fontFamily="@font/libre_baskerville_bold"
+    android:text="CSP"
+    android:textAlignment="viewEnd"
+    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+    android:textColor="#000000"
+    android:textSize="48sp"
+    android:textStyle="bold"
+    android:visibility="visible" />
+

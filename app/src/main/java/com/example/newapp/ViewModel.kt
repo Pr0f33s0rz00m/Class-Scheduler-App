@@ -12,14 +12,12 @@ import kotlinx.coroutines.runBlocking
 
 class ItemViewModel(var dao: UserDao) : ViewModel() {
 
-    var itemsLiveData = mutableListOf<Item>()
-    var classNames = arrayListOf<String>()
-    private var _Item = MutableLiveData<Item?>(null)
-    var index: Int = 0
-    val Item: MutableLiveData<Item?>
-        get() = _Item
-
-
+    private val _itemsLiveData = MutableLiveData<List<Item>>()
+    val itemsLiveData: LiveData<List<Item>> = _itemsLiveData
+    private var classNames = mutableListOf<String>()
+    // LiveData for a single item
+    private var _Item = MutableLiveData<Item?>()
+    val item: LiveData<Item?> = _Item
 
 
     init {
@@ -33,35 +31,50 @@ class ItemViewModel(var dao: UserDao) : ViewModel() {
     //    val ind: Int// Assuming date is a string, you might use LocalDate or Date depending on your requirements
     //)
 
-
-    fun initClassData() {
+    // Initializes the viewmodel
+    private fun initClassData() {
         val classData = mutableListOf<Item>()
         deleteAll()
-        // classData.add(Item(className = "CS 324", classDetails = "Algorithms and Analysis", date = "2023-10-04"))
-        // loadClasses(classData)
-        itemsLiveData = getAll()
-        setClassList()
-    }
-    fun addClass(newClass: Item){
         runBlocking {
-            viewModelScope.launch{
-                dao.insert(newClass)
-                itemsLiveData = dao.getAll().toMutableList()
+            viewModelScope.launch {
+
+                _itemsLiveData.value = dao.getAll()
+                setClassList()
             }
-            _Item.value=newClass
+        }
+
+    }
+    // Based on the item that's passed, a new class is created and added to the database
+    fun addClass(newClass: Item) {
+        runBlocking {
+            viewModelScope.launch {
+                viewModelScope.launch {
+                    dao.insert(newClass)
+                    refreshItemsList()
+                }
+            }
+
+        }
+
+    }
+    // Refreshes the live data based on the classes in the database
+    private fun refreshItemsList() {
+        viewModelScope.launch {
+            _itemsLiveData.value = dao.getAll()
         }
     }
+    // Based on the index of an item, a particular class is updated
     fun updateClass(updatedClass: Item){
         runBlocking {
             viewModelScope.launch{
                 dao.update(updatedClass)
-                itemsLiveData = dao.getAll().toMutableList()
+                refreshItemsList()
             }
 
         }
         _Item.value = updatedClass
     }
-
+    // Deletes all classes from database
     fun deleteAll(){
         runBlocking {
             viewModelScope.launch {
@@ -69,6 +82,7 @@ class ItemViewModel(var dao: UserDao) : ViewModel() {
             }
         }
     }
+    // Loads classes from live data into the database
     fun loadClasses(initialClassData: MutableList<Item>) {
         runBlocking {
             launch {
@@ -78,7 +92,7 @@ class ItemViewModel(var dao: UserDao) : ViewModel() {
             }
         }
     }
-
+    // gets a listing of all current classes in the database
     fun getAll(): MutableList<Item> {
         var classes = mutableListOf<Item>()
         runBlocking {
@@ -88,28 +102,34 @@ class ItemViewModel(var dao: UserDao) : ViewModel() {
         }
         return classes
     }
+    // Sets the class list to the classname array based on class names in the database
     fun setClassList(){
         classNames.clear()
-        for(item in itemsLiveData){
-            classNames.add(item.className)
+        _itemsLiveData.value?.let { items ->
+            for (item in items) {
+                classNames.add(item.className)
+            }
         }
-
     }
+    // Sets current class based on its class name and assigns it to the Item value
     fun setCurrentClass(className: String){
         runBlocking {
             viewModelScope.launch {
                 val currentClass = dao.getByClassName(className)
                 _Item.value = currentClass
+
             }
         }
 
     }
+    // Gets a class based on its index
     fun getClass(index: Int){
         runBlocking {
             viewModelScope.launch {
-                dao.get(index)
+                _Item.value = dao.get(index)
             }
         }
+
     }
 
 
